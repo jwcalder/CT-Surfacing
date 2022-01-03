@@ -2,9 +2,6 @@
 
 This repository gives an example of how to surface (i.e., create 3D models from) CT images containing multiple objects. The code requires the [AMAAZETools](https://github.com/jwcalder/AMAAZETools) package. To illustrate how the code works, we have included in this repository CT data from 2 scans in the DICOM folder. The ScanOverviews folder shows images of the scans from the top and side of the scanning bed. Each scan has 4 bone fragments. The code in this repository creates all the data in the ScanOverviews and Meshes folder from the DICOM data.
 
-## Layout spreadsheet
-The code requires a layout spreadsheet provided by the user. Here, we use the file `ScanLayout.csv`. Each row of the spreadsheet corresponds to a CT scan. The spreadsheet must have the columns `CT`, `ScanPacket`, `CTHead2Tail`, and `Mirrored`, in that order, followed by one column for each object in the CT scan (it is ok to have a different number of objects in each scan). The `CT` column is a scan-date identifier string; the `ScanPacket` column identifies the name of the subfolder in `DICOM` containing the CT data; the column `CTHead2Tail` indicates if the object names that follow should be read left-to-right, or right-to-left in the scan, and should contain either `L2R` or `R2L`; finally, the `Mirrored` column indicates if the CT image is mirrored along the direction of the scanning bed, and should be `yes` or `no` (most often `no` is correct). 
-
 ## Installing required pacakges
 
 The code relies on the [AMAAZETools](https://github.com/jwcalder/AMAAZETools) package, which can be installed with
@@ -16,6 +13,8 @@ This command will also install many dependency packages. The other required pack
 import pandas as pd
 import amaazetools.dicom as dicom
 ```
+## Layout spreadsheet
+The code requires a layout spreadsheet provided by the user. Here, we use the file `ScanLayout.csv`. Each row of the spreadsheet corresponds to a CT scan. The spreadsheet must have the columns `CT`, `ScanPacket`, `CTHead2Tail`, and `Mirrored`, in that order, followed by one column for each object in the CT scan (it is ok to have a different number of objects in each scan). The `CT` column is a scan-date identifier string; the `ScanPacket` column identifies the name of the subfolder in `DICOM` containing the CT data; the column `CTHead2Tail` indicates if the object names that follow should be read left-to-right, or right-to-left in the scan, and should contain either `L2R` or `R2L`; finally, the `Mirrored` column indicates if the CT image is mirrored along the direction of the scanning bed, and should be `yes` or `no` (most often `no` is correct). 
 
 ## First pass of DICOM data
 
