@@ -4,18 +4,29 @@ This repository gives an example of how to surface (i.e., create 3D models from)
 
 The code requires a layout spreadsheet provided by the user. Here, we use the file `ScanLayout.csv`. Each row of the spreadsheet corresponds to a CT scan. The spreadsheet must have the columns `CT`, `ScanPacket`, `CTHead2Tail`, and `Mirrored`, in that order, followed by one column for each object in the CT scan. The `CT` column is a scan-date identifier string; the `ScanPacket` column identifies the name of the subfolder in `DICOM` containing the CT data; the column `CTHead2Tail` indicates if the object names that follow should be read left-to-right, or right-to-left in the scan, and should contain either `L2R` or `R2L`; finally, the `Mirrored` column indicates if the CT image is mirred along the direction of the scanning bed, and should be `yes` or `no` (most often `no` is correct). 
 
-Given a properly formated `ScanLayout.csv` file, the first step is to separate the objects within each CT scan. The code below performs an initial pass, attempting to do this automatically. This code is also in the script `dicom_firstpass.py`.
+The code requires `pandas` and `amaazetools.dicom`, which are first loaded with the commands.
 ```
 import pandas as pd
 import amaazetools.dicom as dicom
+```
 
+Given a properly formated `ScanLayout.csv` file, the first step is to separate the objects within each CT scan. The code below performs an initial pass, attempting to do this automatically. This code is also in the script `dicom_firstpass.py`.
+```
 df = pd.read_csv('ScanLayout.csv')
 scanlayout = df[['CT','ScanPacket','CTHead2Tail','Mirrored','1','2','3','4']].copy()
-chopsheet = dicom.process_dicom('DICOM', scanlayout)
+chopsheet = dicom.process_dicom('DICOM', scanlayout, CTdir='ScanOverviews', Meshdir='Meshes', 
+										 chopsheet=None, threshold=2000, padding=15)
 chopsheet.to_csv('ChopLocations.csv', index=False)
 ```
 
 
+Now...
 
-
+```
+df = pd.read_csv('ScanLayout.csv')
+scanlayout = df[['CT','ScanPacket','CTHead2Tail','Mirrored','1','2','3','4']].copy()
+chopsheet = pd.read_csv('ChopLocations.csv')
+dicom.process_dicom('DICOM', scanlayout, CTdir='ScanOverviews', Meshdir='Meshes', 
+					 chopsheet=cropsheet, threshold=2000, padding=15)
+```
 
