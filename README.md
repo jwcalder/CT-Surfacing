@@ -27,7 +27,7 @@ chopsheet.to_csv('ChopLocations.csv', index=False)
 ```
 The code attempts to automatically detect the objects in the CT scan, and saves overviews of the CT scan with bounding boxes around each object in the `CTdir` folder (here, `ScanOverviews`), and saves individual projected images of each object to the `Meshdir` (here, `Meshes`). The coordinates of the bounding boxes of each object are saved to the .csv file `ChopLocations.csv`, and they can be edited by hand, if necessary (see below).
 
-##Surfacing bones
+## Surfacing bones
 
 If all the objects are detected properly, then we can proceed to surface the objects with the code below (also in `surface.py`).
 ```
@@ -35,7 +35,7 @@ dicom.surface_bones('Meshes', iso=2500, write_gif=False)
 ```
 The first argument is the directory `Meshdir` from the first pass code above. The `iso` value is the threshold for surfacing the CT images, and `write_gif` controls whether to save a rotating .gif of the object. This requires the [Mayavi](https://docs.enthought.com/mayavi/mayavi/) package, which can be difficult to install. This code creates .ply files for each object and saves them in the `Meshes` folder. 
 
-##Refining the DICOM object detection
+## Refining the DICOM object detection
 
 Now, if the initial run of `dicom.process_dicom` does not detect the objects properly, then some fine-tuning can be done by manually editing the `ChopLocations.csv` file and re-running `dicom.process_dicom`, this time providing the new, edited, chopsheet. The .csv file `ChopLocations.csv` contains a column `Process` that can be used to process only scans that were incorrectly chopped up, which can save time. The other columns give the starting and ending coordinates of the bounding box of each object in all three coordinate directions. After editing the .csv file, the code below runs `process_dicom` with the edited `ChopLocations.csv` file. This code is contained in `dicom_refine.py` as well.
 
