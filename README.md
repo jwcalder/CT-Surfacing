@@ -33,5 +33,5 @@ scanlayout = df[['CT','ScanPacket','CTHead2Tail','Mirrored','1','2','3','4']].co
 chopsheet = pd.read_csv('ChopLocations.csv')
 dicom.process_dicom('DICOM', scanlayout, CTdir='ScanOverviews', Meshdir='Meshes', chopsheet=cropsheet, threshold=2000, padding=15)
 ```
-This will create new .png files in `Meshes` and `ScanOverviews`. It may take several iterations to get the bounding boxes in the correct location.
+This will create new .png files in `Meshes` and `ScanOverviews`. It may take several iterations to get the bounding boxes in the correct location. Other parameters that can be adjusted are the `threshold=2000` and `padding=15`. The threshold is used to detect the objects and specific to bone in CT images. The padding refers to the number of pixels to add to the detected object on each side when creating the bounding box.
 
