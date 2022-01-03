@@ -19,7 +19,7 @@ chopsheet.to_csv('ChopLocations.csv', index=False)
 ```
 The code attempts to automatically detect the objects in the CT scan, and saves overviews of the CT scan with bounding boxes around each object in the `CTdir` folder (here, `ScanOverviews`), and saves individual projected images of each object to the `Meshdir` (here, `Meshes`). The coordinates of the bounding boxes of each object are saved to the .csv file `ChopLocations.csv`, and they can be edited by hand, if necessary (see below).
 
-If all the objects are detected properly, then we can proceed to surface the bones with the code below (also in `surface.py`).
+If all the objects are detected properly, then we can proceed to surface the objects with the code below (also in `surface.py`).
 ```
 dicom.surface_bones('Meshes', iso=2500, write_gif=False)
 ```
