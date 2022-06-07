@@ -2,6 +2,10 @@
 
 This repository gives an example of how to surface (i.e., create 3D models from) CT images containing multiple objects. The code requires the [AMAAZETools](https://github.com/jwcalder/AMAAZETools) package. To illustrate how the code works, we have included in this repository CT data from 2 scans in the DICOM folder. The ScanOverviews folder shows images of the scans from the top and side of the scanning bed. Each scan has 4 bone fragments. The code in this repository creates all the data in the ScanOverviews and Meshes folder from the DICOM data.
 
+The code in this repository and the method for CT scanning is described in our paper
+
+K. Yezzi-Woodley, J. Calder, M. Sweno, C. Siewert, P. J. Olver. [The Batch Artifact Scanning Protocol: A new method using computed tomography (CT) to rapidly create three-dimensional models of objects from large collections en masse.](https://arxiv.org/abs/2205.02691) arXiv preprint:2205.02691, 2022.
+
 ## Installing required pacakges
 
 The code relies on the [AMAAZETools](https://github.com/jwcalder/AMAAZETools) package, which can be installed with
